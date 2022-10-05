@@ -1,0 +1,39 @@
+Group2pubabscat:
+    type: entity
+    table: group2pubabscat
+    indexes:
+        group2pubabscat_FK1:
+            columns:
+                - groupid
+        group2pubabscat_FK2:
+            columns:
+                - pub_abscatid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        groupid:
+            targetEntity: Groups
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupid:
+                    referencedColumnName: groupid
+            orphanRemoval: false
+        pubAbscatid:
+            targetEntity: PublicAbscat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pub_abscatid:
+                    referencedColumnName: pub_abscatid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

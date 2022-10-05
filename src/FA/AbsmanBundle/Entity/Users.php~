@@ -1,0 +1,143 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
+/**
+ * Users
+ *
+ * @ORM\Table(name="users")
+ * @ORM\Entity
+ */
+class Users extends BaseUser
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $userid ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userfirstname", type="string", length=255, nullable=true)
+     */
+    private $userfirstname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userlastname", type="string", length=255, nullable=true)
+     */
+    private $userlastname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usertitle", type="string", length=20, nullable=true)
+     */
+    private $usertitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userdisplayname", type="string", length=1024, nullable=true)
+     */
+    private $userdisplayname;
+
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usernumber", type="string", length=255, nullable=true, unique=true)
+     */
+    private $usernumber;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userisdisabled", type="boolean", nullable=false)
+     */
+    private $userisdisabled = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userdateformat", type="string", length=64, nullable=true)
+     */
+    private $userdateformat = 'D j M Y';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userscreenlayout", type="string", length=255, nullable=true)
+     */
+    private $userscreenlayout;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usernotes", type="text", nullable=true)
+     */
+    private $usernotes;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="userbirthdate", type="date", nullable=true)
+     */
+    private $userbirthdate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="userworkingdays", type="string", length=255, nullable=false)
+     */
+    private $userworkingdays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="userhiredate", type="date", nullable=true)
+     */
+    private $userhiredate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="userupdated", type="datetime", nullable=true)
+     */
+    private $userupdated;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="userdisapub", type="boolean", nullable=true)
+     */
+    private $userdisapub;
+
+    /**
+     * @var \Entities
+     *
+     * @ORM\Column(name="entityid", type="binary", length=16, nullable=true)
+     * })
+     */
+    private $entityid;
+
+
+
+
+    public function __construct()
+    {
+        parent::__construct();
+
+    }
+}

@@ -1,0 +1,39 @@
+Group2varabscat:
+    type: entity
+    table: group2varabscat
+    indexes:
+        group2varabscat_FK1:
+            columns:
+                - groupid
+        group2varabscat_FK2:
+            columns:
+                - var_abscatid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        groupid:
+            targetEntity: Groups
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupid:
+                    referencedColumnName: groupid
+            orphanRemoval: false
+        varAbscatid:
+            targetEntity: VariousAbscat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                var_abscatid:
+                    referencedColumnName: var_abscatid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

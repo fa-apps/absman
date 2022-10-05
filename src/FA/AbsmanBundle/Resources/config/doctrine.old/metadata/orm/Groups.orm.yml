@@ -1,0 +1,53 @@
+Groups:
+    type: entity
+    table: groups
+    indexes:
+        groups_FK1:
+            columns:
+                - entityid
+    id:
+        groupid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        groupname:
+            type: string
+            nullable: false
+            length: 256
+            fixed: false
+            comment: ''
+        groupworkingdays:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+            default: '0,100,100,100,100,100,0'
+        disapubhol:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '0'
+        groupupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            default: CURRENT_TIMESTAMP
+    manyToOne:
+        entityid:
+            targetEntity: Entities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entityid:
+                    referencedColumnName: entityid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

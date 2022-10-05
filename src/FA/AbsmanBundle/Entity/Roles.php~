@@ -1,0 +1,39 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Roles
+ *
+ * @ORM\Table(name="roles")
+ * @ORM\Entity
+ */
+class Roles
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rolename", type="string", length=256, nullable=true)
+     */
+    private $rolename;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=32, nullable=true)
+     */
+    private $role;
+
+
+}

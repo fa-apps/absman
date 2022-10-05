@@ -1,0 +1,24 @@
+{% extends "FAAbsmanBundle::layout.html.twig" %}
+
+{% block title %}{{ parent() }} - Index{% endblock %}
+
+{% block body %}
+
+<script language="JavaScript">
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        window.location = '{{ path('fos_user_security_login') }}';
+    {% else %}
+    var userId= '{{ app.user.id }}',
+        userDisplayName= '{{ app.user.displayName }}',
+        loginUrl= '{{ path('fos_user_security_login') }}',
+        logoutUrl= '{{ path('fos_user_security_logout') }}';
+    {% endif %}
+</script>
+{% endblock %}
+
+
+
+
+
+
+

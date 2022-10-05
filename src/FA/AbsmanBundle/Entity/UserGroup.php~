@@ -1,0 +1,45 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User2group
+ *
+ * @ORM\Table(name="user_group")
+ * @ORM\Entity
+ */
+class UserGroup
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="usergrpupdated", type="datetime", nullable=true)
+     */
+    private $usergrpupdated;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Group")
+     * @ORM\JoinColumn(name="groupid", referencedColumnName="groupid")
+     */
+    private $group;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="userid")
+     */
+    private $user;
+
+}

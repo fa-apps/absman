@@ -1,0 +1,63 @@
+PublicAbscat:
+    type: entity
+    table: public_abscat
+    indexes:
+        public_abscat_FK1:
+            columns:
+                - entityid
+    id:
+        pubAbscatid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            column: pub_abscatid
+            generator:
+                strategy: IDENTITY
+    fields:
+        pubName:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: ''
+            column: pub_name
+        pubDate:
+            type: date
+            nullable: true
+            comment: ''
+            column: pub_date
+        pubLen:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: '0 whole day, 1 morning, 2 afternoon'
+            default: '0'
+            column: pub_len
+        pubDisplayorder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: pub_displayorder
+        pubholUpdated:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: '0000-00-00 00:00:00'
+            column: pubhol_updated
+    manyToOne:
+        entityid:
+            targetEntity: Entities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entityid:
+                    referencedColumnName: entityid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

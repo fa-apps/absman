@@ -1,0 +1,55 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Favorites
+ *
+ * @ORM\Table(name="favorites")
+ * @ORM\Entity
+ */
+class Favorites
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="favid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $id ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="favtarget", type="string", length=255, nullable=false)
+     */
+    private $favtarget;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="favorder", type="integer", nullable=false)
+     */
+    private $favorder;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="favtext", type="string", length=255, nullable=false)
+     */
+    private $favtext;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="userid")
+     */
+    private $user;
+
+
+
+}

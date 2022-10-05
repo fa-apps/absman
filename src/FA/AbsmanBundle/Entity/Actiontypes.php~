@@ -1,0 +1,41 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Actiontypes
+ *
+ * @ORM\Table(name="actiontypes")
+ * @ORM\Entity
+ */
+class Actiontypes
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actiontype", type="string", length=64, nullable=false)
+     */
+    private $actiontype;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actiontypetext", type="string", length=512, nullable=false)
+     */
+    private $actiontypetext;
+
+
+
+}
+

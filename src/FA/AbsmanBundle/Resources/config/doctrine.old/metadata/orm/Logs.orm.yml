@@ -1,0 +1,42 @@
+Logs:
+    type: entity
+    table: logs
+    indexes:
+        FK_log:
+            columns:
+                - userid
+    id:
+        logid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        logdate:
+            type: datetime
+            nullable: true
+            comment: ''
+        userid:
+            type: blob
+            nullable: true
+            length: 16
+            fixed: false
+            comment: ''
+        logop:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        logcontent:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

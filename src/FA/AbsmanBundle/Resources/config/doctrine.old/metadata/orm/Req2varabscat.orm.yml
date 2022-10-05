@@ -1,0 +1,74 @@
+Req2varabscat:
+    type: entity
+    table: req2varabscat
+    indexes:
+        req2abscat_FK1:
+            columns:
+                - reqid
+        req2abscat_FK3:
+            columns:
+                - var_abscatid
+    id:
+        req2varabscatid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        daystaken:
+            type: decimal
+            nullable: false
+            precision: 4
+            scale: 3
+            comment: ''
+        startdate:
+            type: date
+            nullable: true
+            comment: ''
+        enddate:
+            type: date
+            nullable: true
+            comment: ''
+        startdateratio:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '100'
+        enddateratio:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '100'
+        justification:
+            type: string
+            nullable: true
+            length: 1024
+            fixed: false
+            comment: ''
+    manyToOne:
+        varAbscatid:
+            targetEntity: VariousAbscat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                var_abscatid:
+                    referencedColumnName: var_abscatid
+            orphanRemoval: false
+        reqid:
+            targetEntity: Requests
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                reqid:
+                    referencedColumnName: reqid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

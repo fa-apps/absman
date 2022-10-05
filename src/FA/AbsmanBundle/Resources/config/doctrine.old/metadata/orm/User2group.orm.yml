@@ -1,0 +1,45 @@
+User2group:
+    type: entity
+    table: user2group
+    indexes:
+        FK_user2group_groups_groupid:
+            columns:
+                - groupid
+        FK_user2group_users_userid:
+            columns:
+                - userid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        usergrpupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            default: CURRENT_TIMESTAMP
+    manyToOne:
+        groupid:
+            targetEntity: Groups
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                groupid:
+                    referencedColumnName: groupid
+            orphanRemoval: false
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

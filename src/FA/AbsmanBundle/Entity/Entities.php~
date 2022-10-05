@@ -1,0 +1,74 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Entities
+ *
+ * @ORM\Table(name="entities")
+ * @ORM\Entity
+ */
+class Entities
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entityid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $entityid ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entityname", type="string", length=256, nullable=false)
+     */
+    private $entityname;
+
+    /*
+     * @ORM\OneToOne(targetEntity="groups")
+     * @ORM\JoinColumn(name="groupid", referencedColumnName="groupid")
+     */
+    private $defaultgroup;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entityworkingdays", type="string", length=256, nullable=false)
+     */
+    private $entityworkingdays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="absence_unit", type="integer", nullable=true)
+     */
+    private $absenceUnit = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="minabsratio", type="integer", nullable=false)
+     */
+    private $minabsratio = '50';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="entityupdated", type="datetime", nullable=true)
+     */
+    private $entityupdated = 'CURRENT_TIMESTAMP';
+
+    /**
+      * @ORM\ManyToOne(targetEntity="Countries")
+     *  @ORM\JoinColumn(name="countryid", referencedColumnName="countryid")
+     */
+    private $country;
+
+
+
+}

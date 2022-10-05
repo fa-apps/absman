@@ -1,0 +1,55 @@
+Actors:
+    type: entity
+    table: actors
+    indexes:
+        actors_FK1:
+            columns:
+                - roleid
+        actors_FK2:
+            columns:
+                - userid
+        actors_FK3:
+            columns:
+                - targetid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        targetid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: 'can be countryid, entityid, groupid, userid, '
+        roleorder:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+    manyToOne:
+        roleid:
+            targetEntity: Roles
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                roleid:
+                    referencedColumnName: roleid
+            orphanRemoval: false
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

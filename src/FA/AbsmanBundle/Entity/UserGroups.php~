@@ -1,0 +1,133 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * User2group
+ *
+ * @ORM\Table(name="user_groups")
+ * @ORM\Entity
+ */
+class UserGroups
+{
+    /**
+     *
+     * @ORM\Column(name="id", type="uuid", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $groupid;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="usergrpupdated", type="datetime", nullable=true)
+     */
+    private $usergrpupdated;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Groups")
+     * @ORM\JoinColumn(name="groupid", referencedColumnName="groupid")
+     */
+    private $group;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="userid")
+     */
+    private $user;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set usergrpupdated
+     *
+     * @param \DateTime $usergrpupdated
+     * @return UserGroup
+     */
+    public function setUsergrpupdated($usergrpupdated)
+    {
+        $this->usergrpupdated = $usergrpupdated;
+
+        return $this;
+    }
+
+    /**
+     * Get usergrpupdated
+     *
+     * @return \DateTime 
+     */
+    public function getUsergrpupdated()
+    {
+        return $this->usergrpupdated;
+    }
+
+    /**
+     * Set group
+     *
+     * @param \FA\AbsmanBundle\Entity\Group $group
+     * @return UserGroup
+     */
+    public function setGroup(\FA\AbsmanBundle\Entity\Group $group = null)
+    {
+        $this->group = $group;
+
+        return $this;
+    }
+
+    /**
+     * Get group
+     *
+     * @return \FA\AbsmanBundle\Entity\Group 
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \FA\AbsmanBundle\Entity\User $user
+     * @return UserGroup
+     */
+    public function setUser(\FA\AbsmanBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \FA\AbsmanBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Get groupid
+     *
+     * @return uuid 
+     */
+    public function getGroupid()
+    {
+        return $this->groupid;
+    }
+}

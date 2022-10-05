@@ -1,0 +1,47 @@
+Favorites:
+    type: entity
+    table: favorites
+    indexes:
+        FK_favorites_users_userid:
+            columns:
+                - userid
+    id:
+        favid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        favtarget:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        favorder:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        favtext:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+    manyToOne:
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

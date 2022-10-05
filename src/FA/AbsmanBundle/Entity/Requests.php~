@@ -1,0 +1,85 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Requests
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="requests")
+ */
+class Requests
+{
+    /**
+     *
+     * @ORM\Column(name="id", length=16, type="uuid", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Actions", inversedBy="requests")
+     */
+    private $actions;
+
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="reqfrom", type="date", nullable=false)
+     */
+    private $reqfrom;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="reqto", type="date", nullable=false)
+     */
+    private $reqto;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reqfromratio", type="integer", nullable=false)
+     */
+    private $reqfromratio = '100';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="reqtoratio", type="integer", nullable=false)
+     */
+    private $reqtoratio = '100';
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="reqdays", type="float", precision=10, scale=0, nullable=false)
+     */
+    private $reqdays = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="reqtext", type="text", nullable=true)
+     */
+    private $reqtext;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="ReqStatus")
+     */
+    private $reqStatus;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="userid")
+     */
+    private $user;
+
+
+}

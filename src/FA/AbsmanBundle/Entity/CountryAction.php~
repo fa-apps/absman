@@ -1,0 +1,94 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Country2Action
+ *
+ * @ORM\Table(name="country_action")
+ * @ORM\Entity(repositoryClass="FA\AbsmanBundle\Entity\CountryActionRepository")
+ */
+class CountryAction
+{
+    /**
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Country")
+     */
+    private $country;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Action")
+     */
+    private $action;
+
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \FA\AbsmanBundle\Entity\Country $country
+     * @return CountryAction
+     */
+    public function setCountry(\FA\AbsmanBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \FA\AbsmanBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \FA\AbsmanBundle\Entity\Action $action
+     * @return CountryAction
+     */
+    public function setAction(\FA\AbsmanBundle\Entity\Action $action = null)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \FA\AbsmanBundle\Entity\Action 
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+}

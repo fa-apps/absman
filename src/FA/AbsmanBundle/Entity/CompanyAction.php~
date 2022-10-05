@@ -1,0 +1,121 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Company2Action
+ *
+ * @ORM\Table(name="company_action")
+ * @ORM\Entity(repositoryClass="FA\AbsmanBundle\Entity\CompanyActionRepository")
+ */
+class CompanyAction
+{
+    /**
+     *
+     * @ORM\Column(name="id", type="binary", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $companyActionId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update", type="datetime", nullable=true)
+     */
+    private $lastUpdate;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Company")
+     */
+    private $company;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Action")
+     */
+    private $action;
+
+
+    /**
+     * Get companyActionId
+     *
+     * @return uuid 
+     */
+    public function getCompanyActionId()
+    {
+        return $this->companyActionId;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return CompanyAction
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \FA\AbsmanBundle\Entity\Company $company
+     * @return CompanyAction
+     */
+    public function setCompany(\FA\AbsmanBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \FA\AbsmanBundle\Entity\Company 
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Set action
+     *
+     * @param \FA\AbsmanBundle\Entity\Action $action
+     * @return CompanyAction
+     */
+    public function setAction(\FA\AbsmanBundle\Entity\Action $action = null)
+    {
+        $this->action = $action;
+
+        return $this;
+    }
+
+    /**
+     * Get action
+     *
+     * @return \FA\AbsmanBundle\Entity\Action 
+     */
+    public function getAction()
+    {
+        return $this->action;
+    }
+}

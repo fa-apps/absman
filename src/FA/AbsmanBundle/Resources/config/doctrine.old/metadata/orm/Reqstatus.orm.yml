@@ -1,0 +1,22 @@
+Reqstatus:
+    type: entity
+    table: reqstatus
+    id:
+        reqstatusid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        reqstatus:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            comment: ''
+    lifecycleCallbacks: {  }

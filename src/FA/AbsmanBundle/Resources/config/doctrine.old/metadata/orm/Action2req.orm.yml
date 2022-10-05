@@ -1,0 +1,39 @@
+Action2req:
+    type: entity
+    table: action2req
+    indexes:
+        action2req_FK1:
+            columns:
+                - actionid
+        action2req_FK2:
+            columns:
+                - reqid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        actionid:
+            targetEntity: Actions
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                actionid:
+                    referencedColumnName: actionid
+            orphanRemoval: false
+        reqid:
+            targetEntity: Requests
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                reqid:
+                    referencedColumnName: reqid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

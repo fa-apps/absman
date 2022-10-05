@@ -1,0 +1,63 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reqstatus
+ *
+ * @ORM\Table(name="reqstatus")
+ * @ORM\Entity
+ */
+class ReqStatus
+{
+    /**
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     *
+     * @ORM\Column(name="reqstatus", type="string", length=64, nullable=true)
+     */
+    private $reqStatus;
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set reqStatus
+     *
+     * @param string $reqStatus
+     * @return ReqStatus
+     */
+    public function setReqStatus($reqStatus)
+    {
+        $this->reqStatus = $reqStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get reqStatus
+     *
+     * @return string 
+     */
+    public function getReqStatus()
+    {
+        return $this->reqStatus;
+    }
+}

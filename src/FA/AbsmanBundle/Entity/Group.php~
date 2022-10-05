@@ -1,0 +1,61 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Groups
+ *
+ * @ORM\Table(name="group")
+ * @ORM\Entity
+ */
+class Group
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $groupid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupname", type="string", length=256, nullable=false)
+     */
+    private $groupname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupworkingdays", type="string", length=255, nullable=true)
+     */
+    private $groupworkingdays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disapubhol", type="boolean", nullable=false)
+     */
+    private $disapubhol = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="groupupdated", type="datetime", nullable=true)
+     */
+    private $groupupdated;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Entity")
+     * @ORM\JoinColumn(name="entityid", referencedColumnName="entityid")
+     * })
+     */
+    private $entity;
+
+}

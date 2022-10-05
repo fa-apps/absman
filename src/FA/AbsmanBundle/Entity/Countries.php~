@@ -1,0 +1,39 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Countries
+ *
+ * @ORM\Table(name="countries")
+ * @ORM\Entity
+ */
+class Countries
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="countryid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $countryid ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="countryname", type="string", length=256, nullable=true)
+     */
+    private $countryname;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="countryupdated", type="datetime", nullable=true)
+     */
+    private $countryupdated = 'CURRENT_TIMESTAMP';
+
+
+}

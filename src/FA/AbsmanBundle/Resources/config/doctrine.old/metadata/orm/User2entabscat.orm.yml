@@ -1,0 +1,76 @@
+User2entabscat:
+    type: entity
+    table: user2entabscat
+    indexes:
+        user2entabscat_FK1:
+            columns:
+                - userid
+        user2entabscat_FK2:
+            columns:
+                - ent_abscatid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        daysentitled:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+        daysleft:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+        ondemandentitled:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+            default: '0.00'
+        ondemandleft:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+            default: '0.00'
+        user2entupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            default: CURRENT_TIMESTAMP
+        isdisabled:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+    manyToOne:
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+        entAbscatid:
+            targetEntity: EntitledAbscat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                ent_abscatid:
+                    referencedColumnName: ent_abscatid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

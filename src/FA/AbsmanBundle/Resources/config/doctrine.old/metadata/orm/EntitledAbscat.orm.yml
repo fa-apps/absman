@@ -1,0 +1,101 @@
+EntitledAbscat:
+    type: entity
+    table: entitled_abscat
+    indexes:
+        entitled_abscat_FK1:
+            columns:
+                - entityid
+    id:
+        entAbscatid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            column: ent_abscatid
+            generator:
+                strategy: IDENTITY
+    fields:
+        entAbscatname:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: ''
+            column: ent_abscatname
+        entAbscatdesc:
+            type: string
+            nullable: true
+            length: 1024
+            fixed: false
+            comment: ''
+            column: ent_abscatdesc
+        entDefaultdays:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+            column: ent_defaultdays
+        entValidfrom:
+            type: date
+            nullable: true
+            comment: ''
+            column: ent_validfrom
+        entValidto:
+            type: date
+            nullable: true
+            comment: ''
+            column: ent_validto
+        entForcevalidation:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '0'
+            column: ent_forcevalidation
+        entAutoexpires:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+            column: ent_autoexpires
+        entOndemanddays:
+            type: decimal
+            nullable: false
+            precision: 10
+            scale: 2
+            comment: ''
+            column: ent_ondemanddays
+        entAutoincrement:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: 'inc (int);from(d date|b birthdate|h hiredate);to(d date|);every(d days | m months| y years);tot max (int)  '
+            column: ent_autoincrement
+        entDisplayorder:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: ent_displayorder
+        entcatUpdated:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: entcat_updated
+    manyToOne:
+        entityid:
+            targetEntity: Entities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entityid:
+                    referencedColumnName: entityid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

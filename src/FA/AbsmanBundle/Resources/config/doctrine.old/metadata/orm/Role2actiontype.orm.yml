@@ -1,0 +1,39 @@
+Role2actiontype:
+    type: entity
+    table: role2actiontype
+    indexes:
+        role2actiontype_FK1:
+            columns:
+                - roleid
+        role2actiontype_FK2:
+            columns:
+                - actiontypeid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        roleid:
+            targetEntity: Roles
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                roleid:
+                    referencedColumnName: roleid
+            orphanRemoval: false
+        actiontypeid:
+            targetEntity: Actiontypes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                actiontypeid:
+                    referencedColumnName: actiontypeid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,52 @@
+Actions:
+    type: entity
+    table: actions
+    indexes:
+        actions_FK1:
+            columns:
+                - actiontypeid
+        actions_FK2:
+            columns:
+                - userid
+    id:
+        actionid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        actiondate:
+            type: datetime
+            nullable: false
+            comment: ''
+        actiontext:
+            type: text
+            nullable: false
+            length: null
+            fixed: false
+            comment: ''
+    manyToOne:
+        actiontypeid:
+            targetEntity: Actiontypes
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                actiontypeid:
+                    referencedColumnName: actiontypeid
+            orphanRemoval: false
+        userid:
+            targetEntity: Users
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                userid:
+                    referencedColumnName: userid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

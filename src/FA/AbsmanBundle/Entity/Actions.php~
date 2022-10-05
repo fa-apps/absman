@@ -1,0 +1,55 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+/**
+ * Actions
+ *
+ * @ORM\Entity
+ * @ORM\Table(name="actions")
+ */
+class Actions
+{
+    /**
+     *
+     * @ORM\Column(name="id", length=16, type="uuid", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Requests", mappedBy="actions")
+     */
+    private $requests;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="actiondate", type="datetime", nullable=false)
+     */
+    private $actiondate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="actiontext", type="text", nullable=false)
+     */
+    private $actiontext;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Actiontypes")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $actiontype;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\JoinColumn(name="userid", referencedColumnName="userid")
+     */
+    private $user;
+
+}

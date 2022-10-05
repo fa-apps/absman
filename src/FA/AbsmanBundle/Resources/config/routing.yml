@@ -1,0 +1,582 @@
+
+
+fa_absman_homepage:
+    path: /
+    defaults: { _controller: FAAbsmanBundle:Default:index }
+
+fa_absman_home_getform:
+    path: /home/{id}
+    defaults: { _controller: FAAbsmanBundle:Default:getForm }
+    methods:  [GET, POST]
+
+fa_absman_home_checkform:
+    path: /home/checkform/{id}
+    defaults: { _controller: FAAbsmanBundle:Default:checkForm }
+    methods:  [GET, POST]
+
+fa_absman_home_checkabs:
+    path: /home/check/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:checkSimpleRequest }
+    methods:  [GET, POST]
+
+fa_absman_home_submitabs:
+    path: /home/submit/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:submitRequest }
+    methods:  [GET, POST]
+
+
+fa_absman_home_saveprofile:
+    path: /home/profile/{id}
+    defaults: { _controller: FAAbsmanBundle:Default:updateProfile }
+    methods:  [PUT]
+
+
+
+fa_absman_pending:
+    path: /pending/
+    defaults: { _controller: FAAbsmanBundle:Request:getPendingDetails }
+    methods:  [GET]
+
+
+
+
+
+
+fa_absman_admin_country_checkform:
+    path: /admin/country/check/{id}
+    defaults: { _controller: FAAbsmanBundle:Country:checkForm }
+
+fa_absman_admin_country_getform:
+    path: /admin/country/{id}
+    defaults: { _controller: FAAbsmanBundle:Country:getForm }
+    methods:  [GET, POST]
+
+fa_absman_admin_country_deleteform:
+    path: /admin/country/{id}
+    defaults: { _controller: FAAbsmanBundle:Country:deleteForm }
+    methods:  [DELETE]
+
+fa_absman_admin_country_saveform:
+    path: /admin/country/{id}
+    defaults: { _controller: FAAbsmanBundle:Country:saveForm }
+    methods:  [PUT]
+
+
+
+
+
+
+fa_absman_admin_company_checkform:
+    path: /admin/company/check/{id}
+    defaults: { _controller: FAAbsmanBundle:Company:checkForm }
+
+fa_absman_admin_company_getform:
+    path: /admin/company/{id}
+    defaults: { _controller: FAAbsmanBundle:Company:getForm }
+    methods:  [GET, POST]
+
+fa_absman_admin_company_deleteform:
+    path: /admin/company/{id}
+    defaults: { _controller: FAAbsmanBundle:Company:deleteForm }
+    methods:  [DELETE]
+
+fa_absman_admin_company_saveform:
+    path: /admin/company/{id}
+    defaults: { _controller: FAAbsmanBundle:Company:saveForm }
+    methods:  [PUT]
+
+
+
+fa_absman_admin_group_checkform:
+    path: /admin/group/check/{id}
+    defaults: { _controller: FAAbsmanBundle:UGroup:checkForm }
+
+fa_absman_admin_group_getform:
+    path: /admin/group/{id}
+    defaults: { _controller: FAAbsmanBundle:UGroup:getForm }
+    methods:  [GET, POST]
+
+fa_absman_admin_group_deleteform:
+    path: /admin/group/{id}
+    defaults: { _controller: FAAbsmanBundle:UGroup:deleteForm }
+    methods:  [DELETE]
+
+fa_absman_admin_group_saveform:
+    path: /admin/group/{id}
+    defaults: { _controller: FAAbsmanBundle:UGroup:saveForm }
+    methods:  [PUT]
+
+
+fa_absman_admin_group_getmembers:
+    path: /admin/group/member/{groupId}
+    defaults: { _controller: FAAbsmanBundle:UGroup:getMembers }
+    methods:  [GET, POST]
+
+fa_absman_admin_group_addmembers:
+    path: /admin/group/addmembers/{groupId}
+    defaults: { _controller: FAAbsmanBundle:UGroup:addMembers }
+    methods:  [GET, POST]
+
+fa_absman_admin_group_removemembers:
+    path: /admin/group/removemembers/{groupId}
+    defaults: { _controller: FAAbsmanBundle:UGroup:removeMembers }
+    methods:  [GET, POST]
+
+
+
+
+fa_absman_admin_admins_roles:
+    path: /admin/adminsroles
+    defaults: { _controller: FAAbsmanBundle:Admins:getAdminsRoles }
+    methods:  [POST, GET]
+
+fa_absman_admin_admins:
+    path: /admin/admins/{targetType}/{targetId}
+    defaults: { _controller: FAAbsmanBundle:Admins:getAdmins }
+    methods:  [GET]
+
+fa_absman_admin_admins_add:
+    path: /admin/admins/{targetType}/{targetId}
+    defaults: { _controller: FAAbsmanBundle:Admins:addAdmin }
+    methods:  [POST]
+
+fa_absman_admin_admins_updates:
+    path: /admin/admins/{targetType}/{targetId}/{adminId}
+    defaults: { _controller: FAAbsmanBundle:Admins:saveAdmin }
+    methods:  [PUT]
+
+fa_absman_admin_admins_remove:
+    path: /admin/admins/{targetType}/{targetId}/{adminId}
+    defaults: { _controller: FAAbsmanBundle:Admins:removeAdmin }
+    methods:  [DELETE]
+
+fa_absman_admin_admins_check:
+    path: /admin/isadmin/{targetType}/{targetId}/{adminId}
+    defaults: { _controller: FAAbsmanBundle:Admins:isAdmin }
+    methods:  [POST, GET]
+
+
+
+
+fa_absman_admin_history:
+    path: /admin/history/{target}/{id}
+    defaults: { _controller: FAAbsmanBundle:Action:getHistory }
+    methods:  [POST, GET]
+
+fa_absman_admin_history_details:
+    path: /admin/history/{id}
+    defaults: { _controller: FAAbsmanBundle:Action:getHistoryDetails }
+    methods:  [POST, GET]
+
+
+
+
+fa_absman_admin_user_checkform:
+    path: /admin/user/check/{id}
+    defaults: { _controller: FAAbsmanBundle:User:checkForm }
+
+fa_absman_admin_user_getform:
+    path: /admin/user/{id}
+    defaults: { _controller: FAAbsmanBundle:User:getForm }
+    methods:  [GET, POST]
+
+fa_absman_admin_user_deleteform:
+    path: /admin/user/{id}
+    defaults: { _controller: FAAbsmanBundle:User:deleteForm }
+    methods:  [DELETE]
+
+fa_absman_admin_user_saveform:
+    path: /admin/user/{id}
+    defaults: { _controller: FAAbsmanBundle:User:saveForm }
+    methods:  [PUT]
+
+
+fa_absman_admin_user_get_groupmemberof:
+    path: /admin/user/memberof/{id}
+    defaults: { _controller: FAAbsmanBundle:User:getMemberOf }
+    methods:  [GET, POST]
+
+fa_absman_admin_user_set_groupmemberof:
+    path: /admin/user/memberof/{id}
+    defaults: { _controller: FAAbsmanBundle:User:setMemberOf }
+    methods:  [PUT]
+
+fa_absman_admin_user_get_groupnotmemberof:
+    path: /admin/user/notmemberof/{id}
+    defaults: { _controller: FAAbsmanBundle:User:getNotMemberOf }
+    methods:  [GET, POST]
+
+
+
+
+
+fa_absman_admin_user_entitlement_checkform:
+    path: /admin/user/entitlement/check/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:checkForm }
+
+fa_absman_admin_user_get_entitlements:
+    path: /admin/user/entitlements/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:getEntitlements }
+    methods:  [GET, POST]
+
+fa_absman_admin_user_get_entitlement:
+    path: /admin/user/entitlement/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:getForm }
+    methods:  [GET, POST]
+
+fa_absman_admin_user_set_entitlement:
+    path: /admin/user/entitlement/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:saveForm }
+    methods:  [PUT]
+
+fa_absman_admin_user_delete_entitlement:
+    path: /admin/user/entitlement/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:deleteForm }
+    methods:  [DELETE]
+
+fa_absman_admin_user_set_entitlements:
+    path: /admin/user/entitlements/{userId}/{id}
+    defaults: { _controller: FAAbsmanBundle:UserEntitlement:saveGrid }
+    methods:  [PUT]
+
+
+
+
+fa_absman_admin_user_get_leave:
+    path: /admin/user/leave/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:getUserLeave }
+    methods:  [GET, POST]
+
+fa_absman_admin_user_get_publicday:
+    path: /admin/user/publicday/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:getUserPublicDay }
+    methods:  [GET, POST]
+
+
+
+
+fa_absman_admin_form_favorite_add:
+    path: /admin/favorite/add/{id}
+    defaults: { _controller: FAAbsmanBundle:Favorite:add }
+
+fa_absman_admin_tree:
+    path: /admin/favorite/{nodeId}
+    defaults: { _controller: FAAbsmanBundle:Favorite:get }
+    methods:  [GET, POST]
+
+fa_absman_admin_tree_order:
+    path: /admin/favorite/order/{userId}
+    defaults: { _controller: FAAbsmanBundle:Favorite:order }
+    methods:  [GET, POST]
+
+fa_absman_admin_tree_favorite_edit:
+    path: /admin/favorite/{nodeId}
+    defaults: { _controller: FAAbsmanBundle:Favorite:edit  }
+    methods:  [PUT]
+
+fa_absman_admin_tree_favorite_delete:
+    path: /admin/favorite/{nodeId}
+    defaults: { _controller: FAAbsmanBundle:Favorite:delete  }
+    methods:  [DELETE]
+
+
+
+
+fa_absman_user:
+    path: /user/{id}
+    defaults: { _controller: FAAbsmanBundle:User:getProfile}
+    methods:  [GET, POST]
+
+fa_absman_user_preferences:
+    path: /user/preference/{userId}
+    defaults: { _controller: FAAbsmanBundle:User:getUserPreferences}
+    methods:  [GET]
+
+fa_absman_set_user_preference:
+    path: /user/preference/{userId}
+    defaults: { _controller: FAAbsmanBundle:User:setUserPreference}
+    methods:  [PUT,POST]
+
+fa_absman_user_search:
+    path: /user/search/{searchText}
+    defaults: { _controller: FAAbsmanBundle:User:search  }
+    methods:  [GET]
+
+
+
+fa_absman_entitled_list:
+    path: /admin/entitled/company/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:getCompanyList  }
+    methods:  [GET, POST]
+
+fa_absman_entitled_update_list:
+    path: /admin/entitled/company/{targetId}/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:saveCompanyList  }
+    methods:  [PUT]
+
+fa_absman_entitled_details:
+    path: /admin/entitled/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:getForm  }
+    methods:  [GET, POST]
+
+fa_absman_entitled_details_update:
+    path: /admin/entitled/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:saveForm  }
+    methods:  [PUT]
+
+fa_absman_entitled_details_delete:
+    path: /admin/entitled/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:deleteForm  }
+    methods:  [DELETE]
+
+fa_absman_entitled_details_check:
+    path: /admin/entitled/check/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:checkForm  }
+    methods:  [GET, POST]
+
+fa_absman_entitled_group_alloc_list:
+    path: /admin/entitled/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:getGroupAllocated  }
+    methods:  [GET, POST]
+
+fa_absman_entitled_group_avail_list:
+    path: /admin/entitled/group/avail/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:getGroupAvailable  }
+    methods:  [GET, POST]
+
+fa_absman_entitled_group_alloc_save_list:
+    path: /admin/entitled/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:Entitled:saveGroupEntitlement  }
+    methods:  [PUT]
+
+fa_absman_leave_group_alloc_list:
+    path: /admin/leave/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:getGroupAllocated  }
+    methods:  [GET, POST]
+
+fa_absman_leave_group_avail_list:
+    path: /admin/leave/group/avail/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:getGroupAvailable  }
+    methods:  [GET, POST]
+
+fa_absman_leave_group_alloc_save_list:
+    path: /admin/leave/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:saveGroupAllocated  }
+    methods:  [PUT]
+
+fa_absman_publicday_group_alloc_list:
+    path: /admin/publicday/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:getGroupAllocated  }
+    methods:  [GET, POST]
+
+fa_absman_publicday_group_avail_list:
+    path: /admin/publicday/group/avail/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:getGroupAvailable  }
+    methods:  [GET, POST]
+
+fa_absman_publicday_group_alloc_save_list:
+    path: /admin/publicday/group/alloc/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:saveGroupAllocated  }
+    methods:  [PUT]
+
+
+
+
+
+
+
+
+fa_absman_leave_list:
+    path: /admin/leave/company/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:getCompanyList  }
+    methods:  [GET, POST]
+
+fa_absman_leave_update_list:
+    path: /admin/leave/company/{targetId}/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:saveCompanyList  }
+    methods:  [PUT]
+
+fa_absman_leave_sorting:
+    path: /admin/leave/company/order/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:saveSorting  }
+    methods:  [GET, POST]
+
+
+fa_absman_leave_details:
+    path: /admin/leave/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:getForm  }
+    methods:  [GET, POST]
+
+fa_absman_leave_details_update:
+    path: /admin/leave/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:saveForm  }
+    methods:  [PUT]
+
+fa_absman_leave_details_delete:
+    path: /admin/leave/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:deleteForm  }
+    methods:  [DELETE]
+
+fa_absman_leave_details_check:
+    path: /admin/leave/check/{id}
+    defaults: { _controller: FAAbsmanBundle:Leave:checkForm  }
+    methods:  [GET, POST]
+
+
+fa_absman_publicday_list:
+    path: /admin/publicday/company/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:getCompanyList  }
+    methods:  [GET, POST]
+
+fa_absman_publicday_update_list:
+    path: /admin/publicday/company/{targetId}/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:saveCompanyList  }
+    methods:  [PUT]
+
+fa_absman_publicday_details:
+    path: /admin/publicday/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:getForm  }
+    methods:  [GET, POST]
+
+fa_absman_publicday_details_update:
+    path: /admin/publicday/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:saveForm  }
+    methods:  [PUT]
+
+fa_absman_publicday_details_delete:
+    path: /admin/publicday/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:deleteForm  }
+    methods:  [DELETE]
+
+fa_absman_publicday_details_check:
+    path: /admin/publicday/check/{id}
+    defaults: { _controller: FAAbsmanBundle:PublicDay:checkForm  }
+    methods:  [GET, POST]
+
+
+fa_absman_request_entitled:
+    path: /request/category/entitled/{id}
+    defaults: { _controller: FAAbsmanBundle:Request:getEntitledCategories  }
+    methods:  [GET, POST]
+
+fa_absman_request_other:
+    path: /request/category/other/{id}
+    defaults: { _controller: FAAbsmanBundle:Request:getOtherCategories  }
+    methods:  [GET, POST]
+
+
+fa_absman_request_absence:
+    path: /request/absence/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:getAbsenceForm  }
+    methods:  [GET, POST]
+
+fa_absman_request_absence_isood:
+    path: /request/absence/checkform/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:checkAbsenceForm  }
+    methods:  [GET, POST]
+
+fa_absman_check_request_absence:
+    path: /request/absence/check/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:checkRequest  }
+    methods:  [GET, POST]
+
+fa_absman_submit_request_absence:
+    path: /request/absence/submit/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:submitRequest  }
+    methods:  [GET, POST]
+
+fa_absman_display_request_absence:
+    path: /request/absence/view/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:displayRequest  }
+    methods:  [GET, POST]
+
+fa_absman_cancel_request_absence:
+    path: /request/absence/cancel/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:cancelRequest  }
+    methods:  [GET, POST]
+
+fa_absman_reject_request_absence:
+    path: /request/absence/reject/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:rejectRequest  }
+    methods:  [GET, POST]
+
+fa_absman_approve_request_absence:
+    path: /request/absence/approve/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:approveRequest  }
+    methods:  [GET, POST]
+
+fa_absman_ack_request_absence:
+    path: /request/absence/ack/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:ackRequest  }
+    methods:  [GET, POST]
+
+fa_absman_nack_request_absence:
+    path: /request/absence/nack/{requestId}
+    defaults: { _controller: FAAbsmanBundle:Request:nackRequest  }
+    methods:  [GET, POST]
+
+fa_absman_request_absence_history:
+    path: /request/absence/history/{historyId}
+    defaults: { _controller: FAAbsmanBundle:Request:getHistoryDetails  }
+    methods:  [GET, POST]
+
+
+
+fa_absman_list_request:
+    path: /request/list/{listType}/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:requestList  }
+    methods:  [GET, POST]
+
+fa_absman_check_list_request:
+    path: /request/list/check/{listType}/{userId}
+    defaults: { _controller: FAAbsmanBundle:Request:checkRequestList  }
+    methods:  [GET, POST]
+
+
+
+fa_absman_staff_group:
+    path: /staff/{userId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:getMyStaff  }
+    methods:  [GET, POST]
+
+fa_absman_check_staff_group:
+    path: /staff/checkform/{userId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:checkMyStaff  }
+    methods:  [GET, POST]
+
+fa_absman_update_staff_group:
+    path: /staff/group/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:saveGroup  }
+    methods:  [PUT]
+
+fa_absman_get_staff_group_members:
+    path: /staff/group/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:getGroupMembers  }
+    methods:  [GET]
+
+fa_absman_delete_staff_group:
+    path: /staff/group/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:deleteGroup  }
+    methods:  [DELETE]
+
+fa_absman_add_staff_group_members:
+    path: /staff/group/member/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:addGroupMembers  }
+    methods:  [PUT]
+
+fa_absman_order_staff_group_member:
+    path: /staff/group/member/order/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:orderGroupMember  }
+    methods:  [POST]
+
+fa_absman_remove_staff_group_member:
+    path: /staff/group/member/{userId}/{groupId}
+    defaults: { _controller: FAAbsmanBundle:EGroup:removeGroupMember  }
+    methods:  [DELETE]
+
+
+fa_absman_group_calendar:
+    path: /staff/group/calendar/{groupId}
+    defaults: { _controller: FAAbsmanBundle:Request:getGCalendar  }
+    methods:  [GET, POST]
+

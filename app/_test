@@ -1,0 +1,30 @@
+CREATE TABLE action2req
+(
+    actionid BINARY(16) NOT NULL,
+    reqid BINARY(16) NOT NULL,
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT
+);
+CREATE INDEX action2req_FK1 ON action2req (actionid);
+CREATE INDEX action2req_FK2 ON action2req (reqid);
+
+
+CREATE TABLE action2req
+(
+    actionid BINARY(16) NOT NULL,
+    reqid BINARY(16) NOT NULL,
+    FOREIGN KEY (actionid) REFERENCES actions (actionid),
+    FOREIGN KEY (reqid) REFERENCES requests (reqid)
+);
+CREATE INDEX action2req_FK1 ON action2req (actionid);
+CREATE INDEX action2req_FK2 ON action2req (reqid);
+
+CREATE TABLE actions
+(
+    actionid BINARY(16) PRIMARY KEY NOT NULL,
+    userid BINARY(16) NOT NULL,
+    actiontypeid BINARY(16) NOT NULL,
+    actiondate DATETIME NOT NULL,
+    actiontext LONGTEXT NOT NULL
+);
+CREATE INDEX actions_FK1 ON actions (actiontypeid);
+CREATE INDEX actions_FK2 ON actions (userid);

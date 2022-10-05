@@ -1,0 +1,840 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
+/**
+ * Users
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="FA\AbsmanBundle\Entity\UserRepository")
+ */
+class User extends BaseUser
+{
+    /**
+     *
+     * @ORM\Column(name="id", type="binary", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    protected $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=20, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="display_name", type="string", length=1024, nullable=true)
+     */
+    private $displayName;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="user_number", type="string", length=255, nullable=true, unique=true)
+     */
+    private $userNumber;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="date_format", type="string", length=64, nullable=true)
+     */
+    private $dateFormat = 'D j M Y';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="screen_layout", type="string", length=255, nullable=true)
+     */
+    private $screenLayout;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notes", type="text", nullable=true)
+     */
+    private $notes;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="admin_notes", type="text", nullable=true)
+     */
+    private $adminNotes;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
+     */
+    private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="working_days", type="string", length=255, nullable=false)
+     */
+    private $workingDays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="hire_date", type="date", nullable=true)
+     */
+    private $hireDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update", type="datetime", nullable=true)
+     */
+    private $lastUpdate;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disable_public_days", type="boolean", nullable=true)
+     */
+    private $disablePublicDays;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Company")
+     */
+    private $company;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="UGroup" , inversedBy="users")
+     * @ORM\JoinTable(name="user_ugroup",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="ugroup_id", referencedColumnName="id", onDelete="CASCADE")}
+     *      )
+     */
+    private $uGroups;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Action", mappedBy="targetUser")
+     */
+    private $actions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="UserEntitlement", mappedBy="user")
+     */
+    private $userEntitlements;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Workflow")
+     */
+    private $workflow;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $approver;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $standInApprover;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $substitute;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $notified;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User")
+     */
+    private $absProxy;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EGroup", mappedBy="user")
+     */
+    private $eGroups;
+
+
+    /**
+     * Get binaryId
+     *
+     * @return string
+     */
+    public function getBinId()
+    {
+        return pack('H*', $this->id);
+
+    }
+
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     *
+     * @return User
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     *
+     * @return User
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return User
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set displayName
+     *
+     * @param string $displayName
+     *
+     * @return User
+     */
+    public function setDisplayName($displayName)
+    {
+        $this->displayName = $displayName;
+
+        return $this;
+    }
+
+    /**
+     * Get displayName
+     *
+     * @return string
+     */
+    public function getDisplayName()
+    {
+        return $this->displayName;
+    }
+
+    /**
+     * Set userNumber
+     *
+     * @param string $userNumber
+     *
+     * @return User
+     */
+    public function setUserNumber($userNumber)
+    {
+        $this->userNumber = $userNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get userNumber
+     *
+     * @return string
+     */
+    public function getUserNumber()
+    {
+        return $this->userNumber;
+    }
+
+    /**
+     * Set dateFormat
+     *
+     * @param string $dateFormat
+     *
+     * @return User
+     */
+    public function setDateFormat($dateFormat)
+    {
+        $this->dateFormat = $dateFormat;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFormat
+     *
+     * @return string
+     */
+    public function getDateFormat()
+    {
+        return $this->dateFormat;
+    }
+
+    /**
+     * Set screenLayout
+     *
+     * @param string $screenLayout
+     *
+     * @return User
+     */
+    public function setScreenLayout($screenLayout)
+    {
+        $this->screenLayout = $screenLayout;
+
+        return $this;
+    }
+
+    /**
+     * Get screenLayout
+     *
+     * @return string
+     */
+    public function getScreenLayout()
+    {
+        return $this->screenLayout;
+    }
+
+    /**
+     * Set notes
+     *
+     * @param string $notes
+     *
+     * @return User
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Get notes
+     *
+     * @return string
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * Set birthDate
+     *
+     * @param \DateTime $birthDate
+     *
+     * @return User
+     */
+    public function setBirthDate($birthDate)
+    {
+        $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    /**
+     * Get birthDate
+     *
+     * @return \DateTime
+     */
+    public function getBirthDate()
+    {
+        return $this->birthDate;
+    }
+
+    /**
+     * Set workingDays
+     *
+     * @param string $workingDays
+     *
+     * @return User
+     */
+    public function setWorkingDays($workingDays)
+    {
+        $this->workingDays = $workingDays;
+
+        return $this;
+    }
+
+    /**
+     * Get workingDays
+     *
+     * @return string
+     */
+    public function getWorkingDays()
+    {
+        return $this->workingDays;
+    }
+
+    /**
+     * Set hireDate
+     *
+     * @param \DateTime $hireDate
+     *
+     * @return User
+     */
+    public function setHireDate($hireDate)
+    {
+        $this->hireDate = $hireDate;
+
+        return $this;
+    }
+
+    /**
+     * Get hireDate
+     *
+     * @return \DateTime
+     */
+    public function getHireDate()
+    {
+        return $this->hireDate;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     *
+     * @return User
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set disablePublicDays
+     *
+     * @param boolean $disablePublicDays
+     *
+     * @return User
+     */
+    public function setDisablePublicDays($disablePublicDays)
+    {
+        $this->disablePublicDays = $disablePublicDays;
+
+        return $this;
+    }
+
+    /**
+     * Get disablePublicDays
+     *
+     * @return boolean
+     */
+    public function getDisablePublicDays()
+    {
+        return $this->disablePublicDays;
+    }
+
+    /**
+     * Set company
+     *
+     * @param \FA\AbsmanBundle\Entity\Company $company
+     *
+     * @return User
+     */
+    public function setCompany(\FA\AbsmanBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \FA\AbsmanBundle\Entity\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
+    }
+
+    /**
+     * Add uGroup
+     *
+     * @param \FA\AbsmanBundle\Entity\UGroup $uGroup
+     *
+     * @return User
+     */
+    public function addUGroup(\FA\AbsmanBundle\Entity\UGroup $uGroup)
+    {
+        $this->uGroups[] = $uGroup;
+
+        return $this;
+    }
+
+    /**
+     * Remove uGroup
+     *
+     * @param \FA\AbsmanBundle\Entity\UGroup $uGroup
+     */
+    public function removeUGroup(\FA\AbsmanBundle\Entity\UGroup $uGroup)
+    {
+        $this->uGroups->removeElement($uGroup);
+    }
+
+    /**
+     * Get uGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUGroups()
+    {
+        return $this->uGroups;
+    }
+
+    /**
+     * Add action
+     *
+     * @param \FA\AbsmanBundle\Entity\Action $action
+     *
+     * @return User
+     */
+    public function addAction(\FA\AbsmanBundle\Entity\Action $action)
+    {
+        $this->actions[] = $action;
+
+        return $this;
+    }
+
+    /**
+     * Remove action
+     *
+     * @param \FA\AbsmanBundle\Entity\Action $action
+     */
+    public function removeAction(\FA\AbsmanBundle\Entity\Action $action)
+    {
+        $this->actions->removeElement($action);
+    }
+
+    /**
+     * Get actions
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActions()
+    {
+        return $this->actions;
+    }
+
+    /**
+     * Add userEntitlement
+     *
+     * @param \FA\AbsmanBundle\Entity\UserEntitlement $userEntitlement
+     *
+     * @return User
+     */
+    public function addUserEntitlement(\FA\AbsmanBundle\Entity\UserEntitlement $userEntitlement)
+    {
+        $this->userEntitlements[] = $userEntitlement;
+
+        return $this;
+    }
+
+    /**
+     * Remove userEntitlement
+     *
+     * @param \FA\AbsmanBundle\Entity\UserEntitlement $userEntitlement
+     */
+    public function removeUserEntitlement(\FA\AbsmanBundle\Entity\UserEntitlement $userEntitlement)
+    {
+        $this->userEntitlements->removeElement($userEntitlement);
+    }
+
+    /**
+     * Get userEntitlements
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUserEntitlements()
+    {
+        return $this->userEntitlements;
+    }
+
+    /**
+     * Set workflow
+     *
+     * @param \FA\AbsmanBundle\Entity\Workflow $workflow
+     *
+     * @return User
+     */
+    public function setWorkflow(\FA\AbsmanBundle\Entity\Workflow $workflow = null)
+    {
+        $this->workflow = $workflow;
+
+        return $this;
+    }
+
+    /**
+     * Get workflow
+     *
+     * @return \FA\AbsmanBundle\Entity\Workflow
+     */
+    public function getWorkflow()
+    {
+        return $this->workflow;
+    }
+
+    /**
+     * Set approver
+     *
+     * @param \FA\AbsmanBundle\Entity\User $approver
+     *
+     * @return User
+     */
+    public function setApprover(\FA\AbsmanBundle\Entity\User $approver = null)
+    {
+        $this->approver = $approver;
+
+        return $this;
+    }
+
+    /**
+     * Get approver
+     *
+     * @return \FA\AbsmanBundle\Entity\User
+     */
+    public function getApprover()
+    {
+        return $this->approver;
+    }
+
+    /**
+     * Set standInApprover
+     *
+     * @param \FA\AbsmanBundle\Entity\User $standInApprover
+     *
+     * @return User
+     */
+    public function setStandInApprover(\FA\AbsmanBundle\Entity\User $standInApprover = null)
+    {
+        $this->standInApprover = $standInApprover;
+
+        return $this;
+    }
+
+    /**
+     * Get standInApprover
+     *
+     * @return \FA\AbsmanBundle\Entity\User
+     */
+    public function getStandInApprover()
+    {
+        return $this->standInApprover;
+    }
+
+    /**
+     * Set substitute
+     *
+     * @param \FA\AbsmanBundle\Entity\User $substitute
+     *
+     * @return User
+     */
+    public function setSubstitute(\FA\AbsmanBundle\Entity\User $substitute = null)
+    {
+        $this->substitute = $substitute;
+
+        return $this;
+    }
+
+    /**
+     * Get substitute
+     *
+     * @return \FA\AbsmanBundle\Entity\User
+     */
+    public function getSubstitute()
+    {
+        return $this->substitute;
+    }
+
+    /**
+     * Set notified
+     *
+     * @param \FA\AbsmanBundle\Entity\User $notified
+     *
+     * @return User
+     */
+    public function setNotified(\FA\AbsmanBundle\Entity\User $notified = null)
+    {
+        $this->notified = $notified;
+
+        return $this;
+    }
+
+    /**
+     * Get notified
+     *
+     * @return \FA\AbsmanBundle\Entity\User
+     */
+    public function getNotified()
+    {
+        return $this->notified;
+    }
+
+
+    /**
+     * Set absProxy
+     *
+     * @param \FA\AbsmanBundle\Entity\User $absProxy
+     *
+     * @return User
+     */
+    public function setAbsProxy(\FA\AbsmanBundle\Entity\User $absProxy = null)
+    {
+        $this->absProxy = $absProxy;
+
+        return $this;
+    }
+
+    /**
+     * Get absProxy
+     *
+     * @return \FA\AbsmanBundle\Entity\User
+     */
+    public function getAbsProxy()
+    {
+        return $this->absProxy;
+    }
+
+    /**
+     * Add eGroup
+     *
+     * @param \FA\AbsmanBundle\Entity\EGroup $eGroup
+     *
+     * @return User
+     */
+    public function addEGroup(\FA\AbsmanBundle\Entity\EGroup $eGroup)
+    {
+        $this->eGroups[] = $eGroup;
+
+        return $this;
+    }
+
+    /**
+     * Remove eGroup
+     *
+     * @param \FA\AbsmanBundle\Entity\EGroup $eGroup
+     */
+    public function removeEGroup(\FA\AbsmanBundle\Entity\EGroup $eGroup)
+    {
+        $this->eGroups->removeElement($eGroup);
+    }
+
+    /**
+     * Get eGroups
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEGroups()
+    {
+        return $this->eGroups;
+    }
+
+    /**
+     * Set adminNotes
+     *
+     * @param string $adminNotes
+     *
+     * @return User
+     */
+    public function setAdminNotes($adminNotes)
+    {
+        $this->adminNotes = $adminNotes;
+
+        return $this;
+    }
+
+    /**
+     * Get adminNotes
+     *
+     * @return string
+     */
+    public function getAdminNotes()
+    {
+        return $this->adminNotes;
+    }
+}

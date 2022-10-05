@@ -1,0 +1,184 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Groups
+ *
+ * @ORM\Table(name="groups")
+ * @ORM\Entity
+ */
+class Groups
+{
+    /**
+     *
+     * @ORM\Column(name="groupid", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $groupid;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupname", type="string", length=256, nullable=false)
+     */
+    private $groupname;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="groupworkingdays", type="string", length=255, nullable=true)
+     */
+    private $groupworkingdays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="disapubhol", type="boolean", nullable=false)
+     */
+    private $disapubhol = '0';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="groupupdated", type="datetime", nullable=true)
+     */
+    private $groupupdated;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Entity")
+     * @ORM\JoinColumn(name="entityid", referencedColumnName="entityid", nullable=false)
+     */
+    private $entity;
+
+
+    /**
+     * Get groupid
+     *
+     * @return uuid 
+     */
+    public function getGroupid()
+    {
+        return $this->groupid;
+    }
+
+    /**
+     * Set groupname
+     *
+     * @param string $groupname
+     * @return Group
+     */
+    public function setGroupname($groupname)
+    {
+        $this->groupname = $groupname;
+
+        return $this;
+    }
+
+    /**
+     * Get groupname
+     *
+     * @return string 
+     */
+    public function getGroupname()
+    {
+        return $this->groupname;
+    }
+
+    /**
+     * Set groupworkingdays
+     *
+     * @param string $groupworkingdays
+     * @return Group
+     */
+    public function setGroupworkingdays($groupworkingdays)
+    {
+        $this->groupworkingdays = $groupworkingdays;
+
+        return $this;
+    }
+
+    /**
+     * Get groupworkingdays
+     *
+     * @return string 
+     */
+    public function getGroupworkingdays()
+    {
+        return $this->groupworkingdays;
+    }
+
+    /**
+     * Set disapubhol
+     *
+     * @param boolean $disapubhol
+     * @return Group
+     */
+    public function setDisapubhol($disapubhol)
+    {
+        $this->disapubhol = $disapubhol;
+
+        return $this;
+    }
+
+    /**
+     * Get disapubhol
+     *
+     * @return boolean 
+     */
+    public function getDisapubhol()
+    {
+        return $this->disapubhol;
+    }
+
+    /**
+     * Set groupupdated
+     *
+     * @param \DateTime $groupupdated
+     * @return Group
+     */
+    public function setGroupupdated($groupupdated)
+    {
+        $this->groupupdated = $groupupdated;
+
+        return $this;
+    }
+
+    /**
+     * Get groupupdated
+     *
+     * @return \DateTime 
+     */
+    public function getGroupupdated()
+    {
+        return $this->groupupdated;
+    }
+
+    /**
+     * Set entity
+     *
+     * @param \FA\AbsmanBundle\Entity\Entity $entity
+     * @return Group
+     */
+    public function setEntity(\FA\AbsmanBundle\Entity\Entity $entity)
+    {
+        $this->entity = $entity;
+
+        return $this;
+    }
+
+    /**
+     * Get entity
+     *
+     * @return \FA\AbsmanBundle\Entity\Entity 
+     */
+    public function getEntity()
+    {
+        return $this->entity;
+    }
+}

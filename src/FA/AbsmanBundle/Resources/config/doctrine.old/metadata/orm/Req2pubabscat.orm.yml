@@ -1,0 +1,39 @@
+Req2pubabscat:
+    type: entity
+    table: req2pubabscat
+    indexes:
+        req2pubabscatid_FK1:
+            columns:
+                - pub_abscatid
+        req2pubabscatid_FK2:
+            columns:
+                - reqid
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        pubAbscatid:
+            targetEntity: PublicAbscat
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                pub_abscatid:
+                    referencedColumnName: pub_abscatid
+            orphanRemoval: false
+        reqid:
+            targetEntity: Requests
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                reqid:
+                    referencedColumnName: reqid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

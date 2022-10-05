@@ -1,0 +1,70 @@
+VariousAbscat:
+    type: entity
+    table: various_abscat
+    indexes:
+        various_abscat_FK1:
+            columns:
+                - entityid
+    id:
+        varAbscatid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            column: var_abscatid
+            generator:
+                strategy: IDENTITY
+    fields:
+        varAbscatname:
+            type: string
+            nullable: true
+            length: 256
+            fixed: false
+            comment: ''
+            column: var_abscatname
+        varAbscatdesc:
+            type: string
+            nullable: true
+            length: 1024
+            fixed: false
+            comment: ''
+            column: var_abscatdesc
+        varAbscatmaxdays:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: var_abscatmaxdays
+        varAbscatisselfapprovable:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '0'
+            column: var_abscatisselfapprovable
+        varDisplayorder:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            column: var_displayorder
+        varcatUpdated:
+            type: datetime
+            nullable: false
+            comment: ''
+            default: CURRENT_TIMESTAMP
+            column: varcat_updated
+    manyToOne:
+        entityid:
+            targetEntity: Entities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entityid:
+                    referencedColumnName: entityid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

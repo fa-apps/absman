@@ -1,0 +1,129 @@
+Users:
+    type: entity
+    table: users
+    uniqueConstraints:
+        index_useremail:
+            columns:
+                - useremail
+        index_userid:
+            columns:
+                - userid
+        entityid:
+            columns:
+                - entityid
+        index_usernumber:
+            columns:
+                - usernumber
+    id:
+        userid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        userfirstname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        userlastname:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        usertitle:
+            type: string
+            nullable: true
+            length: 20
+            fixed: false
+            comment: ''
+        userdisplayname:
+            type: string
+            nullable: false
+            length: 1024
+            fixed: false
+            comment: ''
+        useremail:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+        usernumber:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        userpassword:
+            type: string
+            nullable: true
+            length: 128
+            fixed: false
+            comment: ''
+        userisdisabled:
+            type: boolean
+            nullable: false
+            comment: ''
+            default: '0'
+        userdateformat:
+            type: string
+            nullable: true
+            length: 64
+            fixed: false
+            comment: ''
+            default: 'D j M Y'
+        userscreenlayout:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+            comment: ''
+        usernotes:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+        userbirthdate:
+            type: date
+            nullable: false
+            comment: ''
+        userworkingdays:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: '0,100,100,100,100,100,0'
+        userhiredate:
+            type: date
+            nullable: false
+            comment: ''
+        userupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            default: CURRENT_TIMESTAMP
+        userdisapub:
+            type: boolean
+            nullable: false
+            comment: ''
+    manyToOne:
+        entityid:
+            targetEntity: Entities
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                entityid:
+                    referencedColumnName: entityid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

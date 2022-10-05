@@ -1,0 +1,219 @@
+<?php
+
+namespace FA\AbsmanBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ *
+ * @ORM\Table(name="entity")
+ * @ORM\Entity
+ */
+class Entity
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="id", type="uuid", length=16, nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="FA\AbsmanBundle\Types\GuidGenerator")
+     */
+    private $id ;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity_name", type="string", length=256, nullable=false)
+     */
+    private $entityName;
+
+    /*
+     * @ORM\OneToOne(targetEntity="group")
+     * @ORM\JoinColumn(name="groupid", referencedColumnName="groupid")
+     */
+    private $defaultGroup;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="working_days", type="string", length=256, nullable=false)
+     */
+    private $workingDays = '0,100,100,100,100,100,0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="absence_unit", type="integer", nullable=true)
+     */
+    private $absenceUnit = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min_ratio", type="integer", nullable=false)
+     */
+    private $minRatio = '50';
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="last_update", type="datetime", nullable=true)
+     */
+    private $lastUpdate;
+
+    /**
+      * @ORM\ManyToOne(targetEntity="Country")
+     */
+    private $country;
+
+
+
+    /**
+     * Get id
+     *
+     * @return uuid 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set entityName
+     *
+     * @param string $entityName
+     * @return Entity
+     */
+    public function setEntityName($entityName)
+    {
+        $this->entityName = $entityName;
+
+        return $this;
+    }
+
+    /**
+     * Get entityName
+     *
+     * @return string 
+     */
+    public function getEntityName()
+    {
+        return $this->entityName;
+    }
+
+    /**
+     * Set workingDays
+     *
+     * @param string $workingDays
+     * @return Entity
+     */
+    public function setWorkingDays($workingDays)
+    {
+        $this->workingDays = $workingDays;
+
+        return $this;
+    }
+
+    /**
+     * Get workingDays
+     *
+     * @return string 
+     */
+    public function getWorkingDays()
+    {
+        return $this->workingDays;
+    }
+
+    /**
+     * Set absenceUnit
+     *
+     * @param integer $absenceUnit
+     * @return Entity
+     */
+    public function setAbsenceUnit($absenceUnit)
+    {
+        $this->absenceUnit = $absenceUnit;
+
+        return $this;
+    }
+
+    /**
+     * Get absenceUnit
+     *
+     * @return integer 
+     */
+    public function getAbsenceUnit()
+    {
+        return $this->absenceUnit;
+    }
+
+    /**
+     * Set minRatio
+     *
+     * @param integer $minRatio
+     * @return Entity
+     */
+    public function setMinRatio($minRatio)
+    {
+        $this->minRatio = $minRatio;
+
+        return $this;
+    }
+
+    /**
+     * Get minRatio
+     *
+     * @return integer 
+     */
+    public function getMinRatio()
+    {
+        return $this->minRatio;
+    }
+
+    /**
+     * Set lastUpdate
+     *
+     * @param \DateTime $lastUpdate
+     * @return Entity
+     */
+    public function setLastUpdate($lastUpdate)
+    {
+        $this->lastUpdate = $lastUpdate;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdate
+     *
+     * @return \DateTime 
+     */
+    public function getLastUpdate()
+    {
+        return $this->lastUpdate;
+    }
+
+    /**
+     * Set country
+     *
+     * @param \FA\AbsmanBundle\Entity\Country $country
+     * @return Entity
+     */
+    public function setCountry(\FA\AbsmanBundle\Entity\Country $country = null)
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    /**
+     * Get country
+     *
+     * @return \FA\AbsmanBundle\Entity\Country 
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+}

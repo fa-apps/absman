@@ -1,0 +1,71 @@
+Entities:
+    type: entity
+    table: entities
+    indexes:
+        entities_FK1:
+            columns:
+                - countryid
+    uniqueConstraints:
+        entityupdated:
+            columns:
+                - entityupdated
+    id:
+        entityid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+            default: "\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entityname:
+            type: string
+            nullable: false
+            length: 256
+            fixed: false
+            comment: ''
+        defaultgroupid:
+            type: blob
+            nullable: false
+            length: 16
+            fixed: false
+            comment: ''
+        entityworkingdays:
+            type: string
+            nullable: false
+            length: 255
+            fixed: false
+            comment: ''
+            default: '0,100,100,100,100,100,0'
+        absenceUnit:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: '0=days, 1=hours'
+            default: '0'
+            column: absence_unit
+        minabsratio:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '50'
+        entityupdated:
+            type: datetime
+            nullable: true
+            comment: ''
+            default: CURRENT_TIMESTAMP
+    manyToOne:
+        countryid:
+            targetEntity: Countries
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                countryid:
+                    referencedColumnName: countryid
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

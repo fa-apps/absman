@@ -1,0 +1,27 @@
+services:
+#    fa_absman.example:
+#        class: FA\AbsmanBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    fa_absman.admin.shared:
+        class: FA\AbsmanBundle\Shared\AdminShared
+
+
+#    kernel.listener.ajax_authentication_listener:
+#
+#        class: FA\AbsmanBundle\EventListener\AjaxAuthenticationListener
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 250 }
+
+#    your_request_listener:
+#         class: FA\AbsmanBundle\EventListener\RequestListener
+#         arguments: [@security.token_storage]
+#         tags:
+#             - { name: kernel.event_listener, event: kernel.request, method: onRequest }
+
+
+    fa_absman.handler.session_idle:
+        class: FA\AbsmanBundle\Handler\SessionIdleHandler
+        arguments: ["@session", "@security.context", "@router", %session_max_idle_time%]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
