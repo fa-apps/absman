@@ -8,3 +8,5 @@ src/FA/AbsmanBundle/Resources/public/old-site/
 ext-6.0.0/
 
 vendor/
+
+.idea/
